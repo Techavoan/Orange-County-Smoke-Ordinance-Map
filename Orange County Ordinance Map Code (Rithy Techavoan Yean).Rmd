@@ -18,6 +18,7 @@ When you click the **Knit** button a document will be generated that includes bo
 # Install required packages
 install.packages(c("sf", "ggplot2", "tigris", "dplyr", "USAboundaries", "leaflet", "googlesheets4"))
 ```
+
 ```{r}
 # Load the libraries
 library(sf)
@@ -102,8 +103,6 @@ leaflet() %>%
 
 ```
 
-
-
 ```{r}
 # Plot the manually selected cities within Orange County
 ggplot(data = orange_county_cities) +
@@ -144,10 +143,12 @@ orange_county_smokefree_cities <- merge(orange_county_smokefree_cities, orange_c
 #checking if the selected cities were selected 
 orange_county_smokefree_cities
 ```
+
 ```{r}
 #checking the column names of the dataframe to see which column is responsible for the longitude and latitude data
 colnames(orange_county_smokefree_cities)
 ```
+
 ```{r}
 #calculating the centroids
 orange_county_smokefree_cities_sf <- st_as_sf(orange_county_smokefree_cities) %>% filter(`smoke_free` == TRUE)
@@ -158,9 +159,7 @@ centroids <- st_centroid(orange_county_smokefree_cities_sf)
 centroids
 ```
 
-
 ```{r}
-
 leaflet(data = orange_county_smokefree_cities) %>%
   
   addProviderTiles("CartoDB.Positron") %>%
@@ -223,6 +222,7 @@ leaflet(data = orange_county_smokefree_cities) %>%
   )
 
 ```
+
 ```{r}
 #same code as above but defining a variable to contain the map
 map <- leaflet(data = orange_county_smokefree_cities) %>%
